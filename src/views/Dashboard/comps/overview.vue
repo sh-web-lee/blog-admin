@@ -24,7 +24,7 @@
             <svg-icon :name="option.trendUp ? 'growth' : 'growth-down'" width="104" height="56"></svg-icon>
            </div>
         </div>
-        <div class="lm_cd_trend">
+        <div class="lm_cd_trend" :style="trendStyle(option.trendUp)">
           <svg-icon :name="option.towardsIcon" width="14" height="8"></svg-icon>
           <span class="lm_cd_trend_detail">{{ option.trendAmplitude }}</span>
         </div>
@@ -73,22 +73,28 @@ export default {
         }
       ]
     }
+  },
+  computed: {
+    trendStyle () {
+      return function (trend) {
+        return trend ? 'color: #00DEA3' : 'color: #F23985'
+      }
+    }
   }
 }
 </script>
 <style lang="scss" scoped>
   .lm_db_overview {
     .lm_db_ov_cds {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 32px;
+      display: flex;
       justify-content: space-between;
 
       .lm_db_ov_cd {
-        flex: 1;
         background: #fff;
         border-radius: 16px;
         padding: 24px;
+        width: 23%;
+        flex-wrap: wrap;
         transition: box-shadow .3s;
 
         &:hover {
@@ -122,10 +128,10 @@ export default {
             }
           }
           .lm_cd_ct_rt {
-            margin-left: 16px;
-            width: 40.7%;
+            margin-left: 46px;
+            width: 103px;
             overflow: hidden;
-            animation: showTrend 1.5s linear alternate;
+            animation: showTrend 1s .5s linear alternate;
           }
         }
 
@@ -147,7 +153,7 @@ export default {
       width: 0;
     }
     100% {
-      width: 40.7%;
+      width: 103px;
     }
   }
 </style>

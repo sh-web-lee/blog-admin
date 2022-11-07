@@ -6,19 +6,15 @@
 -->
 <template>
   <div class="lm_content_nav" :style="navStyle">
-    <div class="lm_ct_nav_hel">
-      <h3 class="lm_ct_nav_hel_title">Hello lee_malachi</h3>
-      <p class="lm_ct_nav_hel_time">{{ nowTime }}</p>
-    </div>
-    <div class="lm_ct_nav_search" v-if="route === '/malachi/dashboard'">
-      <svg-icon name="search" width="24" height="24"></svg-icon>
-      <input type="text" placeholder="Search">
+    <div class="lm_ct_nav_search" :class="{ active: searchActive }">
+      <svg-icon name="lm-search" width="18" height="18"></svg-icon>
+      <input type="text" class="lm_search" @focus="focusSearch" @blur="blurSearch" placeholder="Search (Ctrl+/)">
     </div>
     <div class="lm_content_nav_user">
       <svg-icon name="notice" width="24" height="24"></svg-icon>
       <div class="lm_ct_nav_us_username">lee_malachi</div>
       <div class="lm_ct_nav_us_avatar">
-        <img src="@/assets/img/avatar.jpg" alt="">
+        <img src="@/assets/img/Acatar.png" alt="">
       </div>
     </div>
   </div>
@@ -28,70 +24,76 @@ export default {
   name: 'lm_content_nav',
   data () {
     return {
-      nowTime: '',
-      route: ''
+      route: '',
+      searchActive: false
     }
   },
   created () {
-    const time = new Date()
-    this.nowTime = this.$moment(time).format('h:m a D MMM, y')
     this.route = this.$route.path
+  },
+  methods: {
+    focusSearch () {
+      this.searchActive = !this.searchActive
+    },
+    blurSearch () {
+      this.searchActive = !this.searchActive
+    }
   },
   computed: {
     navStyle () {
-      return this.route === '/malachi/dashboard' ? 'background: transparent;' : '#fff'
+      return this.route === '/malachi/dashboards' ? 'background: transparent;' : '#fff'
     }
   },
   watch: {
     $route (to) {
       this.route = to.path
+    },
+    searchActive (val) {
+      console.log('val:', val)
     }
   }
 }
 </script>
 <style lang="scss" scoped>
   .lm_content_nav {
-    padding: 9px 24px;
+    padding: 12px 24px;
     background: #fff;
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    .lm_ct_nav_hel {
-      .lm_ct_nav_hel_title {
-        color: #00261c;
-        font: normal normal 700 18px/26px 'Inter-Bold';
-      }
-      .lm_ct_nav_hel_time {
-        margin-top: 4px;
-        color: #707eae;
-        font: normal normal 400 12px/16px 'Inter-Regular                   ';
+  .lm_ct_nav_search {
+    display: flex;
+    align-items: center;
+    border: 2px solid rgba(105, 122, 141, 0);
+    padding: 12px 12px;
+    border-radius: 4px;
+    transition: all .3s;
+
+    .lm_search {
+      margin-left: 10px;
+      border: none;
+      outline: none;
+      color: #697A8D;
+      font-size: 16px;
+      font-family: 'Inter-Medium';
+      width: 105px;
+      transition: all .3s;
+
+      &::placeholder {
+        font-size: 14px;
       }
     }
 
-    .lm_ct_nav_search {
-      width: 406px;
-      height: 48px;
-      background-color: #fff;
-      border-radius: 8px;
-      padding: 12px 16px;
-      display: flex;
-      align-items: center;
-      input {
-        border: none;
-        outline: none;
-        height: 100%;
-        flex: 1;
-        padding-left: 12px;
-        color: #00261c;
-        font: normal normal 400 14px/24px 'Inter-Regular';
-        /* 使用webkit内核的浏览器 */
-        &::-webkit-input-placeholder{
-          color: #aeb6cf;
-          font-family: 'Inter-Regular';
-        }
+    &.active {
+      border: 2px solid rgba(105, 122, 141, 1);
+
+      .lm_search {
+        width: 350px;
       }
     }
+  }
 
     .lm_content_nav_user {
       display: flex;
@@ -121,9 +123,9 @@ export default {
       }
       .lm_ct_nav_us_avatar {
         margin-left: 8px;
-        width: 48px;
-        height: 48px;
-        border-radius: 12px;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
         overflow: hidden;
         cursor: pointer;
         transition:  all .3s;

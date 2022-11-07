@@ -15,17 +15,29 @@ const routes = [
   },
   {
     path: '/malachi',
-    redirect: '/malachi/dashboard',
+    redirect: '/malachi/dashboards',
     component: view('Index'),
     children: [
       {
-        path: 'dashboard',
+        path: 'dashboards',
+        redirect: 'dashboards/analytics',
         name: 'dashboard',
-        component: view('Dashboard/dashboard')
+        component: view('Dashboard/dashboard'),
+        children: [
+          {
+            path: 'analytics',
+            name: 'analytics',
+            component: view('Dashboard/pages/analytics')
+          }, {
+            path: 'ecommerce',
+            name: 'ecommerce',
+            component: view('Dashboard/pages/ecommerce')
+          }
+        ]
       }, {
-        path: 'exchange',
-        name: 'exchange',
-        component: view('Exchange/exchange')
+        path: 'layouts',
+        name: 'layouts',
+        component: view('Layouts/layouts')
       }, {
         path: 'library',
         name: 'library',

@@ -9,7 +9,9 @@
     <NavOne></NavOne>
     <div class="lm_content">
       <content-nav></content-nav>
-      <router-view class="lm_content_m"/>
+      <transition name="scale" mode="out-in">
+        <router-view class="lm_content_m"/>
+      </transition>
     </div>
   </div>
 </template>
@@ -36,11 +38,29 @@ export default {
 
     .lm_content {
       flex: 1;
-      background: #EFF3FD;
+      background: #F5F5F9;
+      padding: 12px 26px;
 
       .lm_content_m {
-        padding: 35px 24px;
+        padding: 24px;
+        // transform: scale(0.9);
       }
     }
+  }
+
+  .scale-enter-active, .scale-leave-active {
+    transition: all 0.5s ease;
+    transform: scale(0.9);
+    opacity: 0;
+  }
+
+  .scale-enter-to, .scale-leave-from {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  .scale-enter-from, .scale-leave-to {
+    opacity: 0;
+    transform: scale(0.9);
   }
 </style>
