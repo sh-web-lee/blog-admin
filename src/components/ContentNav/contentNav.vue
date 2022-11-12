@@ -11,7 +11,8 @@
       <input type="text" class="lm_search" @focus="focusSearch" @blur="blurSearch" placeholder="Search (Ctrl+/)">
     </div>
     <div class="lm_content_nav_user">
-      <svg-icon name="notice" width="24" height="24"></svg-icon>
+      <svg-icon name="theme-dark" width="20" height="20"></svg-icon>
+      <input type="checkbox" class="lm-theme-switch" @click="changeTheme($event)">
       <div class="lm_ct_nav_us_username">lee_malachi</div>
       <div class="lm_ct_nav_us_avatar">
         <img src="@/assets/img/Acatar.png" alt="">
@@ -37,6 +38,16 @@ export default {
     },
     blurSearch () {
       this.searchActive = !this.searchActive
+    },
+    // 主题切换
+    changeTheme (e) {
+      if (e.target.checked) {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        localStorage.setItem('data-theme', 'dark')
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light')
+        localStorage.setItem('data-theme', 'light')
+      }
     }
   },
   computed: {
@@ -57,43 +68,44 @@ export default {
 <style lang="scss" scoped>
   .lm_content_nav {
     padding: 12px 24px;
-    background: #fff;
+    background: var(--nav-bgColor);
     border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-  .lm_ct_nav_search {
-    display: flex;
-    align-items: center;
-    border: 2px solid rgba(105, 122, 141, 0);
-    padding: 12px 12px;
-    border-radius: 4px;
-    transition: all .3s;
-
-    .lm_search {
-      margin-left: 10px;
-      border: none;
-      outline: none;
-      color: #697A8D;
-      font-size: 16px;
-      font-family: 'Inter-Medium';
-      width: 105px;
+    .lm_ct_nav_search {
+      display: flex;
+      align-items: center;
+      border: 2px solid rgba(105, 122, 141, 0);
+      padding: 12px 12px;
+      border-radius: 4px;
       transition: all .3s;
 
-      &::placeholder {
-        font-size: 14px;
-      }
-    }
-
-    &.active {
-      border: 2px solid rgba(105, 122, 141, 1);
-
       .lm_search {
-        width: 350px;
+        margin-left: 10px;
+        border: none;
+        outline: none;
+        color: #697A8D;
+        font-size: 16px;
+        font-family: 'Inter-Medium';
+        width: 105px;
+        background: transparent;
+        transition: all .3s;
+
+        &::placeholder {
+          font-size: 14px;
+        }
+      }
+
+      &.active {
+        border: 2px solid rgba(105, 122, 141, 1);
+
+        .lm_search {
+          width: 350px;
+        }
       }
     }
-  }
 
     .lm_content_nav_user {
       display: flex;
@@ -104,7 +116,6 @@ export default {
       .lm_ct_nav_us_username {
         position: relative;
         margin-left: 20px;
-        color: #00261c;
         font: normal normal 500 16px/24px 'Inter-Medium';
         cursor: pointer;
         &:hover {
@@ -147,6 +158,14 @@ export default {
           object-fit: cover;
         }
       }
+    }
+
+    .lm-theme-switch {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      opacity: 0;
     }
   }
 

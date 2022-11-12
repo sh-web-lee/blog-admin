@@ -1,0 +1,11 @@
+:root {
+  --font-color: #566A7F;
+  --nav-bgColor: #fff;
+  --h1-color: #566A7F;
+  --p-color: #697A8D;
+}
+
+[data-theme="dark"] {
+  --font-color: #FFF;
+  --nav-bgColor: #2C5364;
+}

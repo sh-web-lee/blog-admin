@@ -1,7 +1,16 @@
 body {
   font-family: 'Inter-Bold';
+  background: var(--bgColor);
+  color: var(--font-color);
 }
 
 .lm_br16 {
   border-radius: 16px;
+}
+.lm-br-8 {
+  border-radius: 8px;
+  background: var(--nav-bgColor);
+}
+.lm-pd-24 {
+  padding: 24px;
 }

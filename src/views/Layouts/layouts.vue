@@ -5,13 +5,13 @@
   版本：v1.0
 -->
 <template>
-  <div class="exchange">
-    This is exchange page.
+  <div class="lm-layouts">
+    <router-view class="lm-layouts-m"/>
   </div>
 </template>
 <script>
 export default {
-  name: 'lm_exchange',
+  name: 'lm-layouts',
   data () {
     return {
     }
@@ -19,5 +19,9 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-
+.lm-layouts-m {
+  height: 100%;
+  border-radius: 12px;
+  padding: 24px;
+}
 </style>

@@ -42,7 +42,8 @@ export default {
       padding: 12px 26px;
 
       .lm_content_m {
-        padding: 24px;
+        margin-top: 24px;
+        height: calc(100vh - 72px - 47px - 12px);
         // transform: scale(0.9);
       }
     }

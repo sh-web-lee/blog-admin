@@ -6,28 +6,14 @@
 -->
 <template>
   <div class="lm_dashboard">
-    <!-- overvierw -->
-    <!-- <OverView /> -->
-    <!-- chars -->
-    <!-- <Charts /> -->
-    <!-- activities -->
-    <!-- <activities /> -->
     <transition name="dash" mode="out-in">
       <router-view />
     </transition>
   </div>
 </template>
 <script>
-// import OverView from './comps/overview.vue'
-// import Charts from './comps/charts.vue'
-// import activities from './comps/activities.vue'
 export default {
   name: 'lm_dashboard',
-  components: {
-    // OverView,
-    // Charts,
-    // activities
-  },
   data () {
     return {
     }
