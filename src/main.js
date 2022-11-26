@@ -15,6 +15,7 @@ import moment from 'moment'
 
 Vue.prototype.$moment = moment
 Vue.config.productionTip = false
+// 自定义按键
 Vue.config.keyCodes = {
   v: 86,
   f1: 112,

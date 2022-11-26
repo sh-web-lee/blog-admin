@@ -8,7 +8,15 @@
   <div class="lm_analytics">
     <div class="lm-analy-lt">
       <div class="lm-analy-lt-l">
-        <div class="lm-analy-lt-l-head lm-br-8 lm-pd-24"></div>
+        <div class="lm-analy-lt-l-head lm-br-8 lm-pd-24">
+          <h3 class="lm-analy-cd-title">Congratulations Katie!</h3>
+          <p class="lm-analy-cd-word">Best seller of the month</p>
+          <div class="lm-analy-cd-bot">
+            <i class="lm-analy-cd-bot-i">$48.9k</i>
+            <span class="lm-analy-cd-bot-word">78% of target</span>
+            <a-button type="primary" text="View Sales" class="lm-analy-cd-btn"></a-button>
+          </div>
+        </div>
         <div class="lm-analy-lt-l-main"></div>
         <div class="lm-analy-lt-l-foot"></div>
       </div>
@@ -75,8 +83,12 @@
   </div>
 </template>
 <script>
+import aButton from '@/components/Button/button.vue'
 export default {
   name: 'lm_analytics',
+  components: {
+    aButton
+  },
   data () {
     return {
       basicOptions: [
@@ -114,9 +126,50 @@ export default {
   .lm-analy-lt {
     flex: 1;
     margin-right: 27px;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 27px;
+    grid-row-gap: 0px;
     .lm-analy-lt-l {
-
+      min-width: 300px;
+      .lm-analy-lt-l-head {
+        background: #ffffff url('@/assets/img/awards.png') no-repeat right bottom;
+        .lm-analy-cd-title {
+          font-size: 16px;
+          line-height: 22px;
+          font-style: italic;
+          font-weight: 100;
+          font-family: 'Inter-Regular';
+        }
+        .lm-analy-cd-word {
+          margin-top: 5px;
+          font-size: 12px;
+          line-height: 20px;
+          font-family: 'Inter-Medium';
+        }
+        .lm-analy-cd-bot {
+          margin-top: 20px;
+          .lm-analy-cd-bot-i {
+            display: block;
+            color: #696CFF;
+            font-size: 26px;
+            line-height: 36px;
+            font-family: 'Inter-Regular';
+            font-weight: 100;
+          }
+          .lm-analy-cd-bot-word {
+            display: block;
+            color: #A1ACB8;
+            font-size: 12px;
+            line-height: 20px;
+            font-family: 'Inter-Regular';
+          }
+          .lm-analy-cd-btn {
+            margin-top: 10px;
+          }
+        }
+      }
     }
     .lm-analy-lt-r {
       .lm-sc-user {
@@ -145,6 +198,12 @@ export default {
             line-height: 20px;
             font-family: 'Inter-Regular';
           }
+        }
+      }
+      .lm-sc-img {
+        img {
+          width: 100%;
+          object-fit: cover;
         }
       }
       .lm-sc-details {

@@ -14,6 +14,11 @@ const routes = [
     component: view('Login/login')
   },
   {
+    path: '/register',
+    name: 'register',
+    component: view('Login/register')
+  },
+  {
     path: '/malachi',
     redirect: '/malachi/dashboards',
     component: view('Index'),

@@ -73,6 +73,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    transition: all .3s;
 
     .lm_ct_nav_search {
       display: flex;

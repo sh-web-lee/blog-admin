@@ -5,47 +5,44 @@
   版本：v1.0
 -->
 <template>
-  <div class="lm__login">
-    <div class="lm__login-wrapper">
-      <div class="lm__login-flash">
-        <div class="lm__login-flash-wrapper">
-          <div class="lm__login-flash-wrapper-body">
-            BLOG ADMIN
-          </div>
-          <div class="lm__login-flash-wrapper-foot"></div>
-        </div>
-      </div>
-      <div class="lm__login-main">
-        <div class="lm__login-main-form">
-          <h1 class="lm__login-form-title">Sign In</h1>
-          <p class="lm__login-form-tips">Please fill your informatio below</p>
-          <div class="lm__login-input-wrapper">
-            <div class="lm__login-input-username lm__login-input">
+  <div class="lm__register">
+    <div class="lm__register-wrapper">
+      <div class="lm__register-main">
+        <div class="lm__register-main-form">
+          <h1 class="lm__register-form-title">Sign In</h1>
+          <p class="lm__register-form-tips">Please fill your informatio below</p>
+          <div class="lm__register-input-wrapper">
+            <div class="lm__register-input-username lm__register-input">
               <svg-icon :name="userIcon" width="20" height="20" />
-              <input type="text" @focus="loginInputFocus('name', $event)" @blur="loginInputBlur('name', $event)">
-              <span class="lm__login-input-placeholder lm__placeholder-name">Name</span>
+              <input type="text" @focus="loginInputFocus('name')">
             </div>
-            <div class="lm__login-input-number lm__login-input">
+            <div class="lm__register-input-number lm__register-input">
               <svg-icon :name="phoneIcon" width="20" height="20" />
-              <input type="text" @focus="loginInputFocus('phone', $event)" @blur="loginInputBlur('phone', $event)">
-              <span class="lm__login-input-placeholder lm__placeholder-phone">Mobile number</span>
+              <input type="text" @focus="loginInputFocus('phone')">
             </div>
-            <div class="lm__login-input-email lm__login-input">
+            <div class="lm__register-input-email lm__register-input">
               <svg-icon :name="mailIcon" width="20" height="20" />
-              <input type="text" @focus="loginInputFocus('mail', $event)" @blur="loginInputBlur('mail', $event)">
-              <span class="lm__login-input-placeholder lm__placeholder-mail">E-mail</span>
+              <input type="text" @focus="loginInputFocus('mail')">
             </div>
           </div>
-          <div class="lm__login-submit-btns">
-            <button class="lm__login-submit-btn">
+          <div class="lm__register-submit-btns">
+            <button class="lm__register-submit-btn">
               <span class="lm__btns-text">Next</span>
               <svg-icon name="login-submit-btn" width="33" height="33"/>
             </button>
           </div>
-          <div class="lm__login-extra-handlers">
-            <span class="lm__login-extra-tips">Already have an account?</span>
-            <router-link to="/register" class="lm__login-extra-signup">Create Account</router-link>
+          <div class="lm__register-extra-handlers">
+            <span class="lm__register-extra-tips">Already have an account?</span>
+            <router-link to="/login" class="lm__register-extra-signup">Create Account</router-link>
           </div>
+        </div>
+      </div>
+      <div class="lm__register-flash">
+        <div class="lm__register-flash-wrapper">
+          <div class="lm__register-flash-wrapper-body">
+            BLOG ADMIN
+          </div>
+          <div class="lm__register-flash-wrapper-foot"></div>
         </div>
       </div>
     </div>
@@ -56,9 +53,9 @@ export default {
   name: 'lm_register',
   data () {
     return {
-      userIcon: 'login-user',
-      phoneIcon: 'login-phone',
-      mailIcon: 'login-email',
+      userIcon: '',
+      phoneIcon: '',
+      mailIcon: '',
       iconName: {
         name: {
           default: 'login-user',
@@ -76,7 +73,7 @@ export default {
     }
   },
   methods: {
-    loginInputFocus (type, e) {
+    loginInputFocus (type) {
       switch (type) {
         case 'name':
           this.userIcon = this.iconName[type].active
@@ -87,80 +84,57 @@ export default {
         case 'mail':
           this.mailIcon = this.iconName[type].active
           break
+
         default:
           break
-      }
-      const next = e.target.nextSibling
-      next.classList.add('lm__login-input-active')
-      next.classList.remove('lm__login-input-value-active')
-    },
-    loginInputBlur (type, e) {
-      switch (type) {
-        case 'name':
-          this.userIcon = this.iconName[type].default
-          break
-        case 'phone':
-          this.phoneIcon = this.iconName[type].default
-          break
-        case 'mail':
-          this.mailIcon = this.iconName[type].default
-          break
-        default:
-          break
-      }
-      const next = e.target.nextSibling
-      if (!e.target.value.length) {
-        next.classList.remove('lm__login-input-active')
-      } else {
-        next.classList.add('lm__login-input-value-active')
       }
     }
   }
 }
 </script>
 <style lang="scss" scoped>
-.lm__login {
+.lm__register {
   width: 100vw;
   height: 100vh;
-  .lm__login-wrapper {
+  .lm__register-wrapper {
     display: flex;
     height: 100vh;
     background: url('../../assets/img/lm-loginBg.jpg') no-repeat center/cover;
-    .lm__login-flash {
+    .lm__register-flash {
       width: 40vw;
       height: 100vh;
       backdrop-filter: blur(8px);
-      .lm__login-flash-wrapper {
+      .lm__register-flash-wrapper {
         color: #FFF;
         font-size: 36px;
         text-align: center;
         line-height: 100vh;
       }
     }
-    .lm__login-main {
+    .lm__register-main {
       display: flex;
       align-items: center;
       justify-content: center;
       flex: 1;
       height: 100vh;
       background: #FFF;
-      .lm__login-main-form {
-        .lm__login-form-title {
+      .lm__register-main-form {
+        .lm__register-form-title {
           color: #2F3367;
           font-size: 28px;
           line-height: 42px;
           font-weight: 700;
           font-family: 'Inter-Bold';
         }
-        .lm__login-form-tips {
+        .lm__register-form-tips {
           color: #303468;
           font: normal normal 500 16px/24px 'Inter-Medium';
           margin-top: 12px;
         }
-        .lm__login-input-wrapper {
+        .lm__register-input-wrapper {
           margin-top: 44px;
           width: 443px;
-          .lm__login-input {
+          .lm__register-input {
             position: relative;
             display: flex;
             align-items: center;
@@ -170,26 +144,6 @@ export default {
             border-radius: 10px;
             margin-bottom: 28px;
             transition: all .3s;
-            .lm__login-input-placeholder {
-              position: absolute;
-              display: inline-block;
-              padding: 2px 8px;
-              background: transparent;
-              font: normal normal 500 16px/24px 'Inter-Medium';
-              color: #8B8FA8;
-              top: 19px;
-              left: 60px;
-              background: transparent;
-              transition: all .3s;
-              &.lm__login-input-active {
-                background: #fff;
-                top: -14px;
-                left: 50px;
-              }
-              &.lm__login-input-value-active {
-                background: transparent;
-              }
-            }
             input {
               position: relative;
               border: none;
@@ -198,7 +152,6 @@ export default {
               margin-left: 22px;
               color: #3C4071;
               font: normal normal 500 18px/27px 'Inter-Medium';
-              z-index: 99;
             }
             &:focus-within {
               background: transparent;
@@ -209,13 +162,34 @@ export default {
                 background: #FFF;
               }
             }
+            &::before {
+              position: absolute;
+              background: transparent;
+              width: 50px;
+              height: 24px;
+              font: normal normal 500 16px/24px 'Inter-Medium';
+              color: #8B8FA8;
+              top: 19px;
+              left: 60px;
+              transition: all 0.3s cubic-bezier(0, 0.06, 0, 1.21);
+            }
+            &.lm__register-input-username::before {
+              content: "Name";
+            }
+            &.lm__register-input-number::before {
+              content: "Mobile number";
+              width: 120px;
+            }
+            &.lm__register-input-email::before {
+              content: "E-mail";
+            }
           }
         }
-        .lm__login-submit-btns {
+        .lm__register-submit-btns {
           margin-top: 38px;
           display: flex;
           justify-content: flex-end;
-          .lm__login-submit-btn {
+          .lm__register-submit-btn {
             position: relative;
             display: flex;
             align-items: center;
@@ -247,14 +221,14 @@ export default {
             }
           }
         }
-        .lm__login-extra-handlers {
+        .lm__register-extra-handlers {
           display: flex;
           align-items: center;
           justify-content: space-between;
           margin-top: 34px;
           padding-top: 30px;
           border-top: 1px solid #ECECF0;
-          .lm__login-extra-tips{
+          .lm__register-extra-tips{
             font-family: 'Inter-Medium';
             font-style: normal;
             font-weight: 500;
@@ -262,7 +236,7 @@ export default {
             line-height: 24px;
             color: #393D6E;
           }
-          .lm__login-extra-signup {
+          .lm__register-extra-signup {
             position: relative;
             border: none;
             outline: none;

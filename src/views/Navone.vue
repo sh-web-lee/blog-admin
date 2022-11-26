@@ -142,6 +142,7 @@ export default {
     padding: 23px 15px;
     background-color: var(--nav-bgColor);
     box-shadow: 4px 4px 40px rgba(0, 0, 0, 0.06);
+    transition: all .3s;
 
     .lm_nav_logo {
       width: 164px;
